@@ -1,25 +1,27 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<time.h>
 
 struct ar
 {
     int n;
-    int a[10];
+    int a[100];
 };
 
 
 void getdata(struct ar *l)
 {
 	int z;
-    printf("\nYou can enter Maximum 10 Data.\nHow many number of data You Want to enter?");
+    printf("\nYou can enter Maximum 100 Data.\nHow many number of data You Want to enter : ");
     scanf("%d",&z);
     l->n = z-1;
     
     //printf("\nEnter Data : ");
+	srand(time(0));
 	for (int i = 0; i < z; i++)
     {
     	//scanf("%d",&l->a[i]);
-		l->a[i] = rand()%50;
+		l->a[i] = rand()%100;
     	printf(" ");
 	}
 }
@@ -35,7 +37,11 @@ int sortdata(struct ar *l)
 		{
 			if(l->a[min] > l->a[j])
 			{
-				min = j;flag=0;
+				min = j;
+			}
+			if (l->a[j-1] > l->a[j])
+			{
+				flag = 0;
 			}
 		}
 		if(flag == 1)
